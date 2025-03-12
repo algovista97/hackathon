@@ -7,26 +7,46 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to right, #1e3c72, #2a5298);
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
             color: white;
             text-align: center;
         }
         header {
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            font-size: 2rem;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: #ff9800;
         }
         section {
-            padding: 20px;
+            padding: 40px;
             margin: 20px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
+            text-align: left;
+            max-width: 800px;
+            margin: auto;
         }
         button {
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 12px 24px;
+            font-size: 18px;
             border: none;
             background: #ff9800;
             color: white;
@@ -37,18 +57,33 @@
         button:hover {
             background: #e68900;
         }
+        .countdown {
+            font-size: 28px;
+            margin-top: 10px;
+        }
         footer {
             margin-top: 20px;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .prizes p {
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>Generative AI Hackathon</h1>
-        <p>Unleash Creativity with AI</p>
+        <p>Innovate. Create. Transform.</p>
+        <p class="countdown" id="countdown"></p>
     </header>
+    <nav>
+        <a href="#intro">About</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#prizes">Prizes</a>
+        <a href="#register">Register</a>
+        <a href="#contact">Contact</a>
+    </nav>
     <section id="intro">
         <h2>What is this Hackathon About?</h2>
         <p>Join us for an exciting hackathon where innovation meets artificial intelligence. Build groundbreaking AI-driven projects, collaborate with like-minded individuals, and push the boundaries of Generative AI.</p>
@@ -61,17 +96,47 @@
             <li><strong>Day 3:</strong> Pitch & Judging</li>
         </ul>
     </section>
+    <section id="prizes" class="prizes">
+        <h2>Exciting Prizes</h2>
+        <p>🏆 First Place: $5000 & Internship Opportunity</p>
+        <p>🥈 Second Place: $3000 & Mentorship Program</p>
+        <p>🥉 Third Place: $1500 & AI Learning Resources</p>
+        <p>🏅 Special Awards for Innovation and Best Design</p>
+    </section>
     <section id="register">
         <h2>Register Now</h2>
         <button onclick="register()">Sign Up</button>
     </section>
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: info@aihacks.com</p>
+        <p>Follow us on social media for updates!</p>
+    </section>
     <footer>
-        <p>Powered by AI Enthusiasts</p>
+        <p>&copy; 2025 AI Hackathon. All Rights Reserved.</p>
     </footer>
     <script>
         function register() {
             alert("Registration feature coming soon!");
         }
+        
+        function updateCountdown() {
+            const eventDate = new Date("2025-05-01T00:00:00").getTime();
+            const now = new Date().getTime();
+            const diff = eventDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById("countdown").innerText = `Starts in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            
+            if (diff < 0) {
+                document.getElementById("countdown").innerText = "The hackathon has started!";
+            }
+        }
+        setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
